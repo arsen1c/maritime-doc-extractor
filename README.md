@@ -80,7 +80,7 @@ bun run check
 
 Use the included Postman collection:
 
-- [skyclad_assessment.postman_collection.json](/home/arsenic/Workspace/Projects/Assessments/maritime-doc-extractor/skyclad_assessment.postman_collection.json)
+- [skyclad_assessment.postman_collection.json](skyclad_assessment.postman_collection.json)
 
 Import it into Postman, set your base URL and environment variables, and use it to exercise the endpoints quickly.
 
