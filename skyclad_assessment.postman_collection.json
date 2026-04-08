@@ -1,0 +1,639 @@
+{
+  "info": {
+    "_postman_id": "279e5d1e-efb0-42e6-a549-533feed54ca8",
+    "name": "SkyClad Assessment",
+    "description": "Complete API collection for Assessment project including Backend, Maritime Doc Extractor, and Parser Microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11437193"
+  },
+  "item": [
+    {
+      "name": "Maritime Doc Extractor - Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{maritime_url}}/health",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Check the health status of Maritime Doc Extractor service"
+          },
+          "response": [
+            {
+              "name": "200 - OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{maritime_url}}/health",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:49:34 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "217"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d9-12ZaF4oB4zal0mrD7/A+tT7IizQ\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"OK\",\n    \"version\": \"1.0.0\",\n    \"uptime\": 423.47818548099997,\n    \"dependencies\": {\n        \"database\": \"OK\",\n        \"llmProvider\": \"OK\",\n        \"queue\": \"OK\"\n    },\n    \"timestamp\": \"2026-04-08T14:49:34.980Z\",\n    \"provider\": \"gemini\",\n    \"model\": \"gemini-2.5-flash-lite\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Health check endpoints for Maritime Doc Extractor service"
+    },
+    {
+      "name": "Maritime Doc Extractor - Extraction",
+      "item": [
+        {
+          "name": "Extract Document (Sync)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document",
+                  "type": "file",
+                  "value": ""
+                },
+                {
+                  "key": "sessionId",
+                  "value": "session_789",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{maritime_url}}/extract?mode=sync",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "extract"
+              ],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "sync"
+                }
+              ]
+            },
+            "description": "Extract document data synchronously"
+          },
+          "response": [
+            {
+              "name": "200 - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "document",
+                      "type": "file",
+                      "src": "/home/arsenic/Workspace/Projects/Assessments/maritime-doc-extractor/tests/03_DrugTest.png"
+                    },
+                    {
+                      "key": "sessionId",
+                      "value": "ca0ee999-5ec3-45ed-a2cf-d1c9985db582",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{maritime_url}}/extract?mode=sync",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "extract"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "sync"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:44:22 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "12309"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3015-iFMcO+h+9X6Iadur2MvoLJa/msg\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"b07b80cb-bdf0-4fd2-98d9-6e5d677c9d64\",\n    \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n    \"fileName\": \"03_DrugTest.png\",\n    \"documentType\": \"DRUG_TEST\",\n    \"documentName\": \"Drug & Alcohol Screening Certificate\",\n    \"applicableRole\": \"N/A\",\n    \"category\": \"MEDICAL\",\n    \"confidence\": \"HIGH\",\n    \"holderName\": \"FRANCISCO JAVIER SALONGA\",\n    \"dateOfBirth\": \"28/08/1990\",\n    \"sirbNumber\": \"C0824567\",\n    \"passportNumber\": null,\n    \"fields\": [\n        {\n            \"key\": \"report_type\",\n            \"label\": \"Report Type\",\n            \"value\": \"Comprehensive Drug & Alcohol Screening\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"test_purpose\",\n            \"label\": \"Test Purpose\",\n            \"value\": \"Pre-Employment Maritime Certification\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"test_date\",\n            \"label\": \"Test Date\",\n            \"value\": \"04 March 2025\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"date_of_birth\",\n            \"label\": \"Date of Birth\",\n            \"value\": \"28 August 1990\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"age\",\n            \"label\": \"Age\",\n            \"value\": \"34 years\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"sex\",\n            \"label\": \"Sex\",\n            \"value\": \"Male\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"identification_number_sirb\",\n            \"label\": \"Identification Number (SIRB)\",\n            \"value\": \"C0824567\",\n            \"importance\": \"CRITICAL\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"position_applied\",\n            \"label\": \"Position Applied\",\n            \"value\": \"Chief Officer - Deck\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"vessel_name\",\n            \"label\": \"Vessel Name\",\n            \"value\": \"MT Oceanbound Explorer\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"test_type\",\n            \"label\": \"Test Type\",\n            \"value\": \"Workplace Drug Screen (DOT Compliant)\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"panel_type\",\n            \"label\": \"Panel Type\",\n            \"value\": \"Extended 12-Panel\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"collection_method\",\n            \"label\": \"Collection Method\",\n            \"value\": \"Supervised Urinalysis\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"collection_time\",\n            \"label\": \"Collection Time\",\n            \"value\": \"14:32 Local Time\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"collector_id\",\n            \"label\": \"Collector ID\",\n            \"value\": \"TL-2847\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"sample_receipt_id\",\n            \"label\": \"Sample Receipt ID\",\n            \"value\": \"MAR-2025-0847291\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"split_sample\",\n            \"label\": \"Split Sample\",\n            \"value\": \"Yes - Retained for confirmation (if required)\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"cannabis_thc_result\",\n            \"label\": \"Cannabis (THC) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"cannabis_thc_cutoff\",\n            \"label\": \"Cannabis (THC) Cutoff\",\n            \"value\": \"50 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"cocaine_coc_result\",\n            \"label\": \"Cocaine (COC) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"cocaine_coc_cutoff\",\n            \"label\": \"Cocaine (COC) Cutoff\",\n            \"value\": \"300 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"amphetamines_amp_result\",\n            \"label\": \"Amphetamines (AMP) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"amphetamines_amp_cutoff\",\n            \"label\": \"Amphetamines (AMP) Cutoff\",\n            \"value\": \"1000 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"methamphetamine_mamp_result\",\n            \"label\": \"Methamphetamine (MAMP) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"methamphetamine_mamp_cutoff\",\n            \"label\": \"Methamphetamine (MAMP) Cutoff\",\n            \"value\": \"500 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"opioids_opi_result\",\n            \"label\": \"Opioids (OPI) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"opioids_opi_cutoff\",\n            \"label\": \"Opioids (OPI) Cutoff\",\n            \"value\": \"2000 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"phencyclidine_pcp_result\",\n            \"label\": \"Phencyclidine (PCP) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"phencyclidine_pcp_cutoff\",\n            \"label\": \"Phencyclidine (PCP) Cutoff\",\n            \"value\": \"25 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"benzodiazepines_bzo_result\",\n            \"label\": \"Benzodiazepines (BZO) Result\",\n            \"value\": \"<10 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"benzodiazepines_bzo_cutoff\",\n            \"label\": \"Benzodiazepines (BZO) Cutoff\",\n            \"value\": \"300 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"barbiturates_bar_result\",\n            \"label\": \"Barbiturates (BAR) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"barbiturates_bar_cutoff\",\n            \"label\": \"Barbiturates (BAR) Cutoff\",\n            \"value\": \"300 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mdma_ecstasymolly_result\",\n            \"label\": \"MDMA (Ecstasy/Molly) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mdma_ecstasymolly_cutoff\",\n            \"label\": \"MDMA (Ecstasy/Molly) Cutoff\",\n            \"value\": \"500 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"methadone_mtd_result\",\n            \"label\": \"Methadone (MTD) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"methadone_mtd_cutoff\",\n            \"label\": \"Methadone (MTD) Cutoff\",\n            \"value\": \"300 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"propoxyphene_ppx_result\",\n            \"label\": \"Propoxyphene (PPX) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"propoxyphene_ppx_cutoff\",\n            \"label\": \"Propoxyphene (PPX) Cutoff\",\n            \"value\": \"300 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"tramadol_trm_result\",\n            \"label\": \"Tramadol (TRM) Result\",\n            \"value\": \"<5 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"tramadol_trm_cutoff\",\n            \"label\": \"Tramadol (TRM) Cutoff\",\n            \"value\": \"100 ng/mL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"breath_alcohol_content_bac_result\",\n            \"label\": \"Breath Alcohol Content (BAC) Result\",\n            \"value\": \"<0.01%\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"breath_alcohol_content_bac_reference\",\n            \"label\": \"Breath Alcohol Content (BAC) Reference\",\n            \"value\": \"0.08% (legal limit)\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"ethanol_blood_test_result\",\n            \"label\": \"Ethanol (Blood Test) Result\",\n            \"value\": \"<5 mg/dL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"ethanol_blood_test_reference\",\n            \"label\": \"Ethanol (Blood Test) Reference\",\n            \"value\": \"50 mg/dL\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"confirmatory_testing_status\",\n            \"label\": \"Confirmatory Testing Status\",\n            \"value\": \"N/A\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_name\",\n            \"label\": \"MRO Name\",\n            \"value\": \"Dr. Robert Catalino\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_license\",\n            \"label\": \"MRO License\",\n            \"value\": \"MRO-PH-3829471\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_medical_board\",\n            \"label\": \"MRO Medical Board\",\n            \"value\": \"Occupational Medicine & Toxicology\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_review_date\",\n            \"label\": \"MRO Review Date\",\n            \"value\": \"04 March 2025\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_review_time\",\n            \"label\": \"MRO Review Time\",\n            \"value\": \"15:47 Local Time\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"mro_findings\",\n            \"label\": \"MRO Findings\",\n            \"value\": \"CERTIFIED NEGATIVE\",\n            \"importance\": \"CRITICAL\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_collection_time\",\n            \"label\": \"Chain of Custody Collection Time\",\n            \"value\": \"14:32\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_collection_personnel_id\",\n            \"label\": \"Chain of Custody Collection Personnel ID\",\n            \"value\": \"TL-2847\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_transport_time\",\n            \"label\": \"Chain of Custody Transport Time\",\n            \"value\": \"14:45\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_transport_personnel_id\",\n            \"label\": \"Chain of Custody Transport Personnel ID\",\n            \"value\": \"TR-0129\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_lab_receipt_time\",\n            \"label\": \"Chain of Custody Lab Receipt Time\",\n            \"value\": \"16:23\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_lab_receipt_personnel_id\",\n            \"label\": \"Chain of Custody Lab Receipt Personnel ID\",\n            \"value\": \"LAB-0847\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_testing_complete_time\",\n            \"label\": \"Chain of Custody Testing Complete Time\",\n            \"value\": \"17:52\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_testing_complete_personnel_id\",\n            \"label\": \"Chain of Custody Testing Complete Personnel ID\",\n            \"value\": \"TP-2340\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_mro_review_time\",\n            \"label\": \"Chain of Custody MRO Review Time\",\n            \"value\": \"15:47 +1d\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"chain_of_custody_mro_review_personnel_id\",\n            \"label\": \"Chain of Custody MRO Review Personnel ID\",\n            \"value\": \"MRO-3829\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"laboratory_certification\",\n            \"label\": \"Laboratory Certification\",\n            \"value\": \"SAMHSA Certified (Certificate #NCSAB-PH-LAB-847)\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"iso_17025_accreditation\",\n            \"label\": \"ISO 17025 Accreditation\",\n            \"value\": \"Yes\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"quality_control_passed\",\n            \"label\": \"Quality Control Passed\",\n            \"value\": \"Yes\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"blind_sample_control_passed\",\n            \"label\": \"Blind Sample Control Passed\",\n            \"value\": \"Passed\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"temperature_monitored\",\n            \"label\": \"Temperature Monitored\",\n            \"value\": \"Yes\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"specimen_integrity\",\n            \"label\": \"Specimen Integrity\",\n            \"value\": \"Verified\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"overall_result\",\n            \"label\": \"Overall Result\",\n            \"value\": \"NEGATIVE - FIT FOR DUTY\",\n            \"importance\": \"CRITICAL\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"specimen_result\",\n            \"label\": \"Specimen Result\",\n            \"value\": \"NEGATIVE for all tested substances\",\n            \"importance\": \"CRITICAL\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"certification_statement\",\n            \"label\": \"Certification Statement\",\n            \"value\": \"This individual has PASSED the required drug and alcohol screening and is CLEARED FOR MARITIME EMPLOYMENT.\",\n            \"importance\": \"CRITICAL\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"result_validity_period\",\n            \"label\": \"Result Validity Period\",\n            \"value\": \"24 months from test date\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"valid_from\",\n            \"label\": \"Valid From\",\n            \"value\": \"04 March 2025\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"valid_until\",\n            \"label\": \"Valid Until\",\n            \"value\": \"03 March 2027\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"testing_laboratory\",\n            \"label\": \"Testing Laboratory\",\n            \"value\": \"Metropolitan Maritime Testing Facility\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"laboratory_director\",\n            \"label\": \"Laboratory Director\",\n            \"value\": \"Dr. Patricia Gonzales, MD\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"official_laboratory_seal\",\n            \"label\": \"Official Laboratory Seal\",\n            \"value\": \"[SEAL - NATIONAL CENTER FOR SUBSTANCE ABUSE TESTING]\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"date_certificate_issued\",\n            \"label\": \"Date Certificate Issued\",\n            \"value\": \"04 March 2025\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"compliance_conforms_to_samhsa\",\n            \"label\": \"Conforms to SAMHSA Workplace Testing Standards\",\n            \"value\": \"Yes\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"compliance_meets_imo_guidelines\",\n            \"label\": \"Meets International Maritime Organization (IMO) Guidelines\",\n            \"value\": \"Yes\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"compliance_compliant_with_ilo\",\n            \"label\": \"Compliant with ILO Convention 184\",\n            \"value\": \"Yes\",\n            \"importance\": \"MEDIUM\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"compliance_recognized_by_flag_states\",\n            \"label\": \"Recognized by All Flag States\",\n            \"value\": \"Yes\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        },\n        {\n            \"key\": \"compliance_dot_certified_collection\",\n            \"label\": \"DOT Certified Collection\",\n            \"value\": \"Yes\",\n            \"importance\": \"HIGH\",\n            \"status\": \"OK\"\n        }\n    ],\n    \"validity\": {\n        \"dateOfIssue\": \"04 March 2025\",\n        \"dateOfExpiry\": \"03 March 2027\",\n        \"isExpired\": false,\n        \"daysUntilExpiry\": 730,\n        \"revalidationRequired\": null\n    },\n    \"compliance\": {\n        \"issuingAuthority\": \"National Center for Substance Abuse Testing (NCSAB)\",\n        \"regulationReference\": null,\n        \"imoModelCourse\": null,\n        \"recognizedAuthority\": true,\n        \"limitations\": \"This certificate confirms the subject has tested NEGATIVE for all common and illicit drugs and alcohol. Result is valid for employment purposes for 24 months. Subject may be subject to random testing during employment. Any positive result would be subject to confirmatory testing and MRO review. This is not a medical diagnosis; only a screening result.\"\n    },\n    \"medicalData\": {\n        \"fitnessResult\": \"FIT\",\n        \"drugTestResult\": \"NEGATIVE\",\n        \"restrictions\": null,\n        \"specialNotes\": null,\n        \"expiryDate\": \"03 March 2027\"\n    },\n    \"flags\": [\n        {\n            \"severity\": \"LOW\",\n            \"message\": \"The results for Cocaine (COC), Phencyclidine (PCP), Barbiturates (BAR), MDMA (Ecstasy/Molly), and Tramadol (TRM) are indicated with a heart symbol in the 'Result' column and the text value is '<5 ng/mL'. This may be a visual indicator from the system, but the textual value confirms the negative result.\"\n        }\n    ],\n    \"isExpired\": false,\n    \"processingTimeMs\": 15875,\n    \"summary\": \"This document confirms that Francisco Javier Salonga has passed a comprehensive drug and alcohol screening test on March 4, 2025, and is cleared for maritime employment. The certificate is valid for 24 months from the issue date.\",\n    \"createdAt\": \"2026-04-08T14:44:06.639Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Extract Document (Async)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "document",
+                  "type": "file",
+                  "value": ""
+                },
+                {
+                  "key": "sessionId",
+                  "value": "session_789",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{maritime_url}}/extract?mode=async",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "extract"
+              ],
+              "query": [
+                {
+                  "key": "mode",
+                  "value": "async"
+                }
+              ]
+            },
+            "description": "Extract document data asynchronously and get job ID"
+          },
+          "response": [
+            {
+              "name": "202 - Accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "document",
+                      "type": "file",
+                      "src": [
+                        "",
+                        "/home/arsenic/Workspace/Projects/Assessments/maritime-doc-extractor/tests/04_Passport.pdf"
+                      ]
+                    },
+                    {
+                      "key": "sessionId",
+                      "value": "ca0ee999-5ec3-45ed-a2cf-d1c9985db582",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{maritime_url}}/extract?mode=async",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "extract"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "async"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:48:18 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "199"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c7-Ko1ti2mgvftC2CPSTTfRHX9BRpc\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"jobId\": \"544b166f-610e-4ced-a79c-d591552b4587\",\n    \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n    \"status\": \"QUEUED\",\n    \"pollUrl\": \"/api/jobs/544b166f-610e-4ced-a79c-d591552b4587\",\n    \"estimatedWaitMs\": 6000\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Document extraction endpoints"
+    },
+    {
+      "name": "Maritime Doc Extractor - Jobs",
+      "item": [
+        {
+          "name": "Get Job Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{maritime_url}}/jobs/{{job_id}}",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "jobs",
+                "{{job_id}}"
+              ]
+            },
+            "description": "Get the status of an extraction job"
+          },
+          "response": [
+            {
+              "name": "200 - Processing",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{maritime_url}}/jobs/{{job_id}}",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "{{job_id}}"
+                  ]
+                },
+                "description": "Get the status of an extraction job"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"jobId\": \"job_456\",\n  \"status\": \"PROCESSING\",\n  \"progress\": 45,\n  \"createdAt\": \"2024-04-08T10:00:00Z\"\n}"
+            },
+            {
+              "name": "200 - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{maritime_url}}/jobs/{{job_id}}",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "{{job_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:46:41 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "20731"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"50fb-KMnu5xYJD3g0vtqpSEQndGzgXK4\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"jobId\": \"f03f0fc0-1ec5-40f9-8b93-e0a715030a52\",\n    \"status\": \"COMPLETE\",\n    \"extractionId\": \"9314df90-819a-4f33-8d54-3c1e366c668c\",\n    \"result\": {\n        \"_id\": \"69d6670f61f4e6b647f3bdf9\",\n        \"extractionId\": \"9314df90-819a-4f33-8d54-3c1e366c668c\",\n        \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n        \"fileName\": \"01_COC_Master.pdf\",\n        \"mimeType\": \"application/pdf\",\n        \"fileSizeBytes\": 353710,\n        \"fileHash\": \"1b342ff41ecad2623e33ce703ae643457a3be2b92499e0c83e4182e048535732\",\n        \"status\": \"COMPLETE\",\n        \"provider\": \"gemini\",\n        \"model\": \"gemini-2.5-flash-lite\",\n        \"promptVersion\": \"v1\",\n        \"documentType\": \"COC\",\n        \"documentName\": \"Certificate of Competency - Master\",\n        \"category\": \"CERTIFICATION\",\n        \"applicableRole\": \"DECK\",\n        \"confidence\": \"HIGH\",\n        \"holderName\": \"RICARDO MARIANO SANTOS\",\n        \"dateOfBirth\": \"15/03/1985\",\n        \"passportNumber\": null,\n        \"sirbNumber\": null,\n        \"issuingAuthority\": \"Republic of the Philippines - Maritime Industry Authority\",\n        \"dateOfIssue\": \"18 June 2023\",\n        \"dateOfExpiry\": \"17 June 2028\",\n        \"isExpired\": false,\n        \"daysUntilExpiry\": 1093,\n        \"fitnessResult\": \"FIT\",\n        \"drugTestResult\": \"N/A\",\n        \"criticalFlagCount\": 0,\n        \"highFlagCount\": 0,\n        \"summary\": \"This Certificate of Competency (COC) confirms that Ricardo Mariano Santos holds the rank of Master, issued by the Philippines Maritime Industry Authority, valid until 17 June 2028. It attests to his proficiency according to STCW standards and includes endorsements for unlimited tonnage and geographical area, along with specific tanker qualifications.\",\n        \"detection\": {\n            \"documentType\": \"COC\",\n            \"documentName\": \"Certificate of Competency - Master\",\n            \"category\": \"CERTIFICATION\",\n            \"applicableRole\": \"DECK\",\n            \"isRequired\": true,\n            \"confidence\": \"HIGH\",\n            \"detectionReason\": \"The document explicitly states 'CERTIFICATE OF COMPETENCY - MASTER' and details qualifications and endorsements relevant to a Master mariner.\"\n        },\n        \"holder\": {\n            \"fullName\": \"RICARDO MARIANO SANTOS\",\n            \"dateOfBirth\": \"15/03/1985\",\n            \"nationality\": \"Philippine\",\n            \"passportNumber\": null,\n            \"sirbNumber\": null,\n            \"rank\": \"Master\",\n            \"photo\": \"ABSENT\"\n        },\n        \"fields\": [\n            {\n                \"key\": \"certificate_number\",\n                \"label\": \"Certificate Number\",\n                \"value\": \"PHIL-MS-2024-087432\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"surname\",\n                \"label\": \"Surname\",\n                \"value\": \"SANTOS\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"given_names\",\n                \"label\": \"Given Names\",\n                \"value\": \"RICARDO MARIANO\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"date_of_birth\",\n                \"label\": \"Date of Birth\",\n                \"value\": \"15 March 1985\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"place_of_birth\",\n                \"label\": \"Place of Birth\",\n                \"value\": \"Manila, Philippines\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"nationality\",\n                \"label\": \"Nationality\",\n                \"value\": \"Philippine\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"sex\",\n                \"label\": \"Sex\",\n                \"value\": \"Male\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"marital_status\",\n                \"label\": \"Marital Status\",\n                \"value\": \"Married\",\n                \"importance\": \"LOW\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_unlimited_tonnage\",\n                \"label\": \"Master - Unlimited Tonnage, Unlimited Geographical Area\",\n                \"value\": \"Master - Unlimited Tonnage, Unlimited Geographical Area\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_valid_from\",\n                \"label\": \"Endorsement Valid From\",\n                \"value\": \"18 June 2023\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_valid_until\",\n                \"label\": \"Endorsement Valid Until\",\n                \"value\": \"17 June 2028\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_maximum_horsepower\",\n                \"label\": \"Maximum Horsepower\",\n                \"value\": \"Unlimited\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_tonnage_limitation\",\n                \"label\": \"Tonnage Limitation\",\n                \"value\": \"Unlimited\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_geographical_limitation\",\n                \"label\": \"Geographical Limitation\",\n                \"value\": \"Unlimited\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_condition_medical_fitness\",\n                \"label\": \"Medical Fitness\",\n                \"value\": \"Valid medical certificate required on the bridge\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_condition_bridge_resource_management\",\n                \"label\": \"Bridge Resource Management\",\n                \"value\": \"Completed IMO Model Course 1.27\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_condition_security_level\",\n                \"label\": \"Security Level\",\n                \"value\": \"ISPS Code Level A Approved\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"endorsement_condition_tanker_endorsement\",\n                \"label\": \"Tanker Endorsement\",\n                \"value\": \"Oil Tanker Limited (Product Tanker Configuration)\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_master_unlimited\",\n                \"label\": \"Master Unlimited\",\n                \"value\": \"Philippine Nautical Academy\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_master_unlimited_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"12 June 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_master_unlimited_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"IMO 1.26\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_bridge_resource_mgmt\",\n                \"label\": \"Advanced Bridge Resource Mgmt\",\n                \"value\": \"Magsaysay Maritime Academy\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_bridge_resource_mgmt_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"08 June 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_bridge_resource_mgmt_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"IMO 1.27\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_ecdis_type_approval\",\n                \"label\": \"ECDIS Type Approval (Integrated)\",\n                \"value\": \"CLASS B Navigation Systems\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_ecdis_type_approval_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"14 February 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_ecdis_type_approval_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"SOLAS Ch. V\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_fire_fighting\",\n                \"label\": \"Advanced Fire Fighting\",\n                \"value\": \"PAGCOR Port Authority\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_fire_fighting_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"22 May 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_advanced_fire_fighting_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"STCW Reg III/6\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_oil_tanker_procedures\",\n                \"label\": \"Oil Tanker - Procedures All Ships\",\n                \"value\": \"Petron Training Center\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_oil_tanker_procedures_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"15 April 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_oil_tanker_procedures_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"STCW Reg VI/3\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_medical_first_aid\",\n                \"label\": \"Medical First Aid (Advanced)\",\n                \"value\": \"Red Cross Philippines\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_medical_first_aid_completion_date\",\n                \"label\": \"Completion Date\",\n                \"value\": \"10 May 2023\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"course_medical_first_aid_imo_ref\",\n                \"label\": \"IMO Reference\",\n                \"value\": \"STCW Reg VI/4\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"medical_certificate_issued\",\n                \"label\": \"Medical Certificate Issued\",\n                \"value\": \"12 May 2023\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"medical_certificate_expires\",\n                \"label\": \"Medical Certificate Expires\",\n                \"value\": \"12 May 2026\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"medical_fitness_category\",\n                \"label\": \"Fitness Category\",\n                \"value\": \"Class A (Unlimited Maritime Service)\",\n                \"importance\": \"CRITICAL\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"medical_restrictions\",\n                \"label\": \"Restrictions\",\n                \"value\": \"None\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"medical_special_notes\",\n                \"label\": \"Special Notes\",\n                \"value\": \"Corrective lenses required for near and distant vision\",\n                \"importance\": \"HIGH\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"iso_compliance_iso_17185\",\n                \"label\": \"ISO 17185 Compliance\",\n                \"value\": \"Yes - Fully Compliant\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"iso_compliance_solas_convention\",\n                \"label\": \"SOLAS Convention\",\n                \"value\": \"Chapter V, Regulation 2\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"iso_compliance_stcw_convention\",\n                \"label\": \"STCW Convention\",\n                \"value\": \"Regulation I/2\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            },\n            {\n                \"key\": \"iso_compliance_imo_smssw_code\",\n                \"label\": \"IMO SMSSW Code\",\n                \"value\": \"Fully Aligned\",\n                \"importance\": \"MEDIUM\",\n                \"status\": \"OK\"\n            }\n        ],\n        \"validity\": {\n            \"dateOfIssue\": \"18 June 2023\",\n            \"dateOfExpiry\": \"17 June 2028\",\n            \"isExpired\": false,\n            \"daysUntilExpiry\": 1093,\n            \"revalidationRequired\": null\n        },\n        \"compliance\": {\n            \"issuingAuthority\": \"Republic of the Philippines - Maritime Industry Authority\",\n            \"regulationReference\": \"STCW Convention, as amended\",\n            \"imoModelCourse\": \"IMO 1.26, IMO 1.27\",\n            \"recognizedAuthority\": true,\n            \"limitations\": \"Oil Tanker Limited (Product Tanker Configuration)\"\n        },\n        \"medicalData\": {\n            \"fitnessResult\": \"FIT\",\n            \"drugTestResult\": \"N/A\",\n            \"restrictions\": \"None\",\n            \"specialNotes\": \"Corrective lenses required for near and distant vision\",\n            \"expiryDate\": \"12 May 2026\"\n        },\n        \"flags\": [\n            {\n                \"severity\": \"LOW\",\n                \"message\": \"The document header has a future date '2026-04-08' which seems like a placeholder or system date rather than the document issue date, but the 'Date of Issue' and 'Validity Period' fields are consistent and appear correct.\"\n            }\n        ],\n        \"rawLlmResponse\": \"{\\n  \\\"detection\\\": {\\n    \\\"documentType\\\": \\\"COC\\\",\\n    \\\"documentName\\\": \\\"Certificate of Competency - Master\\\",\\n    \\\"category\\\": \\\"CERTIFICATION\\\",\\n    \\\"applicableRole\\\": \\\"DECK\\\",\\n    \\\"isRequired\\\": true,\\n    \\\"confidence\\\": \\\"HIGH\\\",\\n    \\\"detectionReason\\\": \\\"The document explicitly states 'CERTIFICATE OF COMPETENCY - MASTER' and details qualifications and endorsements relevant to a Master mariner.\\\"\\n  },\\n  \\\"holder\\\": {\\n    \\\"fullName\\\": \\\"RICARDO MARIANO SANTOS\\\",\\n    \\\"dateOfBirth\\\": \\\"15/03/1985\\\",\\n    \\\"nationality\\\": \\\"Philippine\\\",\\n    \\\"passportNumber\\\": null,\\n    \\\"sirbNumber\\\": null,\\n    \\\"rank\\\": \\\"Master\\\",\\n    \\\"photo\\\": \\\"ABSENT\\\"\\n  },\\n  \\\"fields\\\": [\\n    {\\n      \\\"key\\\": \\\"certificate_number\\\",\\n      \\\"label\\\": \\\"Certificate Number\\\",\\n      \\\"value\\\": \\\"PHIL-MS-2024-087432\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"surname\\\",\\n      \\\"label\\\": \\\"Surname\\\",\\n      \\\"value\\\": \\\"SANTOS\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"given_names\\\",\\n      \\\"label\\\": \\\"Given Names\\\",\\n      \\\"value\\\": \\\"RICARDO MARIANO\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"date_of_birth\\\",\\n      \\\"label\\\": \\\"Date of Birth\\\",\\n      \\\"value\\\": \\\"15 March 1985\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"place_of_birth\\\",\\n      \\\"label\\\": \\\"Place of Birth\\\",\\n      \\\"value\\\": \\\"Manila, Philippines\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"nationality\\\",\\n      \\\"label\\\": \\\"Nationality\\\",\\n      \\\"value\\\": \\\"Philippine\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"sex\\\",\\n      \\\"label\\\": \\\"Sex\\\",\\n      \\\"value\\\": \\\"Male\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"marital_status\\\",\\n      \\\"label\\\": \\\"Marital Status\\\",\\n      \\\"value\\\": \\\"Married\\\",\\n      \\\"importance\\\": \\\"LOW\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_unlimited_tonnage\\\",\\n      \\\"label\\\": \\\"Master - Unlimited Tonnage, Unlimited Geographical Area\\\",\\n      \\\"value\\\": \\\"Master - Unlimited Tonnage, Unlimited Geographical Area\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_valid_from\\\",\\n      \\\"label\\\": \\\"Endorsement Valid From\\\",\\n      \\\"value\\\": \\\"18 June 2023\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_valid_until\\\",\\n      \\\"label\\\": \\\"Endorsement Valid Until\\\",\\n      \\\"value\\\": \\\"17 June 2028\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_maximum_horsepower\\\",\\n      \\\"label\\\": \\\"Maximum Horsepower\\\",\\n      \\\"value\\\": \\\"Unlimited\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_tonnage_limitation\\\",\\n      \\\"label\\\": \\\"Tonnage Limitation\\\",\\n      \\\"value\\\": \\\"Unlimited\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_geographical_limitation\\\",\\n      \\\"label\\\": \\\"Geographical Limitation\\\",\\n      \\\"value\\\": \\\"Unlimited\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_condition_medical_fitness\\\",\\n      \\\"label\\\": \\\"Medical Fitness\\\",\\n      \\\"value\\\": \\\"Valid medical certificate required on the bridge\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_condition_bridge_resource_management\\\",\\n      \\\"label\\\": \\\"Bridge Resource Management\\\",\\n      \\\"value\\\": \\\"Completed IMO Model Course 1.27\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_condition_security_level\\\",\\n      \\\"label\\\": \\\"Security Level\\\",\\n      \\\"value\\\": \\\"ISPS Code Level A Approved\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"endorsement_condition_tanker_endorsement\\\",\\n      \\\"label\\\": \\\"Tanker Endorsement\\\",\\n      \\\"value\\\": \\\"Oil Tanker Limited (Product Tanker Configuration)\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_master_unlimited\\\",\\n      \\\"label\\\": \\\"Master Unlimited\\\",\\n      \\\"value\\\": \\\"Philippine Nautical Academy\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_master_unlimited_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"12 June 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_master_unlimited_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"IMO 1.26\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_bridge_resource_mgmt\\\",\\n      \\\"label\\\": \\\"Advanced Bridge Resource Mgmt\\\",\\n      \\\"value\\\": \\\"Magsaysay Maritime Academy\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_bridge_resource_mgmt_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"08 June 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_bridge_resource_mgmt_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"IMO 1.27\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_ecdis_type_approval\\\",\\n      \\\"label\\\": \\\"ECDIS Type Approval (Integrated)\\\",\\n      \\\"value\\\": \\\"CLASS B Navigation Systems\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_ecdis_type_approval_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"14 February 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_ecdis_type_approval_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"SOLAS Ch. V\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_fire_fighting\\\",\\n      \\\"label\\\": \\\"Advanced Fire Fighting\\\",\\n      \\\"value\\\": \\\"PAGCOR Port Authority\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_fire_fighting_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"22 May 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_advanced_fire_fighting_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"STCW Reg III/6\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_oil_tanker_procedures\\\",\\n      \\\"label\\\": \\\"Oil Tanker - Procedures All Ships\\\",\\n      \\\"value\\\": \\\"Petron Training Center\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_oil_tanker_procedures_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"15 April 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_oil_tanker_procedures_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"STCW Reg VI/3\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_medical_first_aid\\\",\\n      \\\"label\\\": \\\"Medical First Aid (Advanced)\\\",\\n      \\\"value\\\": \\\"Red Cross Philippines\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_medical_first_aid_completion_date\\\",\\n      \\\"label\\\": \\\"Completion Date\\\",\\n      \\\"value\\\": \\\"10 May 2023\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"course_medical_first_aid_imo_ref\\\",\\n      \\\"label\\\": \\\"IMO Reference\\\",\\n      \\\"value\\\": \\\"STCW Reg VI/4\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"medical_certificate_issued\\\",\\n      \\\"label\\\": \\\"Medical Certificate Issued\\\",\\n      \\\"value\\\": \\\"12 May 2023\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"medical_certificate_expires\\\",\\n      \\\"label\\\": \\\"Medical Certificate Expires\\\",\\n      \\\"value\\\": \\\"12 May 2026\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"medical_fitness_category\\\",\\n      \\\"label\\\": \\\"Fitness Category\\\",\\n      \\\"value\\\": \\\"Class A (Unlimited Maritime Service)\\\",\\n      \\\"importance\\\": \\\"CRITICAL\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"medical_restrictions\\\",\\n      \\\"label\\\": \\\"Restrictions\\\",\\n      \\\"value\\\": \\\"None\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"medical_special_notes\\\",\\n      \\\"label\\\": \\\"Special Notes\\\",\\n      \\\"value\\\": \\\"Corrective lenses required for near and distant vision\\\",\\n      \\\"importance\\\": \\\"HIGH\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"iso_compliance_iso_17185\\\",\\n      \\\"label\\\": \\\"ISO 17185 Compliance\\\",\\n      \\\"value\\\": \\\"Yes - Fully Compliant\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"iso_compliance_solas_convention\\\",\\n      \\\"label\\\": \\\"SOLAS Convention\\\",\\n      \\\"value\\\": \\\"Chapter V, Regulation 2\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"iso_compliance_stcw_convention\\\",\\n      \\\"label\\\": \\\"STCW Convention\\\",\\n      \\\"value\\\": \\\"Regulation I/2\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    },\\n    {\\n      \\\"key\\\": \\\"iso_compliance_imo_smssw_code\\\",\\n      \\\"label\\\": \\\"IMO SMSSW Code\\\",\\n      \\\"value\\\": \\\"Fully Aligned\\\",\\n      \\\"importance\\\": \\\"MEDIUM\\\",\\n      \\\"status\\\": \\\"OK\\\"\\n    }\\n  ],\\n  \\\"validity\\\": {\\n    \\\"dateOfIssue\\\": \\\"18 June 2023\\\",\\n    \\\"dateOfExpiry\\\": \\\"17 June 2028\\\",\\n    \\\"isExpired\\\": false,\\n    \\\"daysUntilExpiry\\\": 1093,\\n    \\\"revalidationRequired\\\": \\\"Yes - Renewal training 6 months prior to expiry\\\"\\n  },\\n  \\\"compliance\\\": {\\n    \\\"issuingAuthority\\\": \\\"Republic of the Philippines - Maritime Industry Authority\\\",\\n    \\\"regulationReference\\\": \\\"STCW Convention, as amended\\\",\\n    \\\"imoModelCourse\\\": \\\"IMO 1.26, IMO 1.27\\\",\\n    \\\"recognizedAuthority\\\": true,\\n    \\\"limitations\\\": \\\"Oil Tanker Limited (Product Tanker Configuration)\\\"\\n  },\\n  \\\"medicalData\\\": {\\n    \\\"fitnessResult\\\": \\\"FIT\\\",\\n    \\\"drugTestResult\\\": \\\"N/A\\\",\\n    \\\"restrictions\\\": \\\"None\\\",\\n    \\\"specialNotes\\\": \\\"Corrective lenses required for near and distant vision\\\",\\n    \\\"expiryDate\\\": \\\"12 May 2026\\\"\\n  },\\n  \\\"flags\\\": [\\n    {\\n      \\\"severity\\\": \\\"LOW\\\",\\n      \\\"message\\\": \\\"The document header has a future date '2026-04-08' which seems like a placeholder or system date rather than the document issue date, but the 'Date of Issue' and 'Validity Period' fields are consistent and appear correct.\\\"\\n    }\\n  ],\\n  \\\"summary\\\": \\\"This Certificate of Competency (COC) confirms that Ricardo Mariano Santos holds the rank of Master, issued by the Philippines Maritime Industry Authority, valid until 17 June 2028. It attests to his proficiency according to STCW standards and includes endorsements for unlimited tonnage and geographical area, along with specific tanker qualifications.\\\"\\n}\",\n        \"errorCode\": null,\n        \"errorMessage\": null,\n        \"retryable\": false,\n        \"processingTimeMs\": 7669,\n        \"completedAt\": \"2026-04-08T14:32:55.470Z\",\n        \"createdAt\": \"2026-04-08T14:32:47.713Z\",\n        \"updatedAt\": \"2026-04-08T14:32:55.471Z\",\n        \"__v\": 0\n    },\n    \"completedAt\": \"2026-04-08T14:32:55.597Z\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Job status tracking endpoints"
+    },
+    {
+      "name": "Maritime Doc Extractor - Sessions",
+      "item": [
+        {
+          "name": "Get Session Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{maritime_url}}/sessions/{{session_id}}",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "sessions",
+                "{{session_id}}"
+              ]
+            },
+            "description": "Get details of a session"
+          },
+          "response": [
+            {
+              "name": "200 - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{maritime_url}}/sessions/{{session_id}}",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{session_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:44:51 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "966"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"3c6-yJH1DvZrs43cbFxGavcnDMBOC00\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n    \"documentCount\": 3,\n    \"detectedRole\": \"N/A\",\n    \"overallHealth\": \"OK\",\n    \"documents\": [\n        {\n            \"id\": \"b07b80cb-bdf0-4fd2-98d9-6e5d677c9d64\",\n            \"fileName\": \"03_DrugTest.png\",\n            \"documentType\": \"DRUG_TEST\",\n            \"applicableRole\": \"N/A\",\n            \"holderName\": \"FRANCISCO JAVIER SALONGA\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flagCount\": 1,\n            \"criticalFlagCount\": 0,\n            \"createdAt\": \"2026-04-08T14:44:06.639Z\"\n        },\n        {\n            \"id\": \"d5ecb08b-681c-46ec-8611-af18e1adcfc1\",\n            \"fileName\": \"02_PEME_Medical.pdf\",\n            \"documentType\": \"PEME\",\n            \"applicableRole\": \"N/A\",\n            \"holderName\": \"SAMUEL PABLO SAMOYA\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flagCount\": 3,\n            \"criticalFlagCount\": 0,\n            \"createdAt\": \"2026-04-08T14:34:23.443Z\"\n        },\n        {\n            \"id\": \"9314df90-819a-4f33-8d54-3c1e366c668c\",\n            \"fileName\": \"01_COC_Master.pdf\",\n            \"documentType\": \"COC\",\n            \"applicableRole\": \"DECK\",\n            \"holderName\": \"RICARDO MARIANO SANTOS\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flagCount\": 1,\n            \"criticalFlagCount\": 0,\n            \"createdAt\": \"2026-04-08T14:32:47.713Z\"\n        }\n    ],\n    \"pendingJobs\": []\n}"
+            }
+          ]
+        },
+        {
+          "name": "Validate Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{maritime_url}}/sessions/{{session_id}}/validate",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "sessions",
+                "{{session_id}}",
+                "validate"
+              ]
+            },
+            "description": "Validate all extractions in a session"
+          },
+          "response": [
+            {
+              "name": "200 - Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{maritime_url}}/sessions/{{session_id}}/validate",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{session_id}}",
+                    "validate"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:45:03 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "2512"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9d0-mlPL5jNtp06TlWG//tHN0gbYgJ0\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n    \"holderProfile\": {\n        \"name\": \"RICARDO MARIANO SANTOS\",\n        \"dob\": \"15/03/1985\",\n        \"passport\": null,\n        \"sirb\": null\n    },\n    \"consistencyChecks\": [\n        {\n            \"message\": \"Holder name 'RICARDO MARIANO SANTOS' in COC document does not match holder name 'SAMUEL PABLO SAMOYA' in PEME document and 'FRANCISCO JAVIER SALONGA' in DrugTest document.\",\n            \"severity\": \"REJECTED\"\n        },\n        {\n            \"message\": \"Date of birth '15/03/1985' in COC document does not match date of birth '12/03/1988' in PEME document and '28/08/1990' in DrugTest document.\",\n            \"severity\": \"REJECTED\"\n        }\n    ],\n    \"missingDocuments\": [\n        {\n            \"documentType\": \"PEME\",\n            \"reason\": \"Required for seafarer to be medically fit for duty. Current PEME belongs to a different seafarer.\"\n        },\n        {\n            \"documentType\": \"DRUG_TEST\",\n            \"reason\": \"Required for seafarer to be free from prohibited substances. Current Drug Test belongs to a different seafarer.\"\n        }\n    ],\n    \"expiringDocuments\": [],\n    \"medicalFlags\": [\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Blood pressure (135/88 mmHg) is noted as 'Elevated - Monitor' which, while not disqualifying, requires specific monitoring as per the restrictions.\",\n            \"severity\": \"WARNING\"\n        },\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Total Cholesterol is 'Borderline' at 198 mg/dL, though LDL and HDL are within acceptable ranges.\",\n            \"severity\": \"WARNING\"\n        },\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Physician signature is missing from the document.\",\n            \"severity\": \"LOW\"\n        },\n        {\n            \"documentType\": \"COC\",\n            \"message\": \"The document header has a future date '2026-04-08' which seems like a placeholder or system date rather than the document issue date, but the 'Date of Issue' and 'Validity Period' fields are consistent and appear correct.\",\n            \"severity\": \"LOW\"\n        }\n    ],\n    \"overallStatus\": \"REJECTED\",\n    \"overallScore\": 0,\n    \"summary\": \"The identity of the seafarer is inconsistent across the provided documents. The COC belongs to RICARDO MARIANO SANTOS, while the PEME belongs to SAMUEL PABLO SAMOYA and the Drug Test belongs to FRANCISCO JAVIER SALONGA. Therefore, the documents cannot be considered for a single seafarer.\",\n    \"recommendations\": [\n        \"Please ensure all submitted documents belong to the same seafarer. Resubmit documents with consistent holder information for identity verification.\",\n        \"If the submitted PEME is indeed for RICARDO MARIANO SANTOS, please provide proof of the physician's signature.\",\n        \"If the submitted PEME is for RICARDO MARIANO SANTOS, please clarify the 'Elevated - Monitor' blood pressure and 'Borderline' cholesterol findings and ensure appropriate follow-up actions are documented.\"\n    ],\n    \"validatedAt\": \"2026-04-08T14:45:04.082Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Session Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{maritime_url}}/sessions/{{session_id}}/report",
+              "host": [
+                "{{maritime_url}}"
+              ],
+              "path": [
+                "sessions",
+                "{{session_id}}",
+                "report"
+              ]
+            },
+            "description": "Get a comprehensive report for a session"
+          },
+          "response": [
+            {
+              "name": "200 - Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{maritime_url}}/sessions/{{session_id}}/report",
+                  "host": [
+                    "{{maritime_url}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    "{{session_id}}",
+                    "report"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 08 Apr 2026 14:46:18 GMT"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "3774"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ebe-gKex+P5+vQ2X4ovNiW0b2IoxPvw\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"sessionId\": \"ca0ee999-5ec3-45ed-a2cf-d1c9985db582\",\n    \"sessionOverview\": {\n        \"detectedRole\": \"N/A\",\n        \"documentCount\": 3,\n        \"validatedAt\": \"2026-04-08T14:45:04.082Z\",\n        \"finalDecision\": \"DO_NOT_PROGRESS\"\n    },\n    \"holderIdentity\": {\n        \"name\": \"RICARDO MARIANO SANTOS\",\n        \"dob\": \"15/03/1985\",\n        \"passport\": null,\n        \"sirb\": null\n    },\n    \"documentCoverage\": [\n        {\n            \"extractionId\": \"9314df90-819a-4f33-8d54-3c1e366c668c\",\n            \"fileName\": \"01_COC_Master.pdf\",\n            \"documentType\": \"COC\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flags\": [\n                {\n                    \"severity\": \"LOW\",\n                    \"message\": \"The document header has a future date '2026-04-08' which seems like a placeholder or system date rather than the document issue date, but the 'Date of Issue' and 'Validity Period' fields are consistent and appear correct.\"\n                }\n            ]\n        },\n        {\n            \"extractionId\": \"d5ecb08b-681c-46ec-8611-af18e1adcfc1\",\n            \"fileName\": \"02_PEME_Medical.pdf\",\n            \"documentType\": \"PEME\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flags\": [\n                {\n                    \"severity\": \"WARNING\",\n                    \"message\": \"Blood pressure (135/88 mmHg) is noted as 'Elevated - Monitor' which, while not disqualifying, requires specific monitoring as per the restrictions.\"\n                },\n                {\n                    \"severity\": \"WARNING\",\n                    \"message\": \"Total Cholesterol is 'Borderline' at 198 mg/dL, though LDL and HDL are within acceptable ranges.\"\n                },\n                {\n                    \"severity\": \"LOW\",\n                    \"message\": \"Physician signature is missing from the document.\"\n                }\n            ]\n        },\n        {\n            \"extractionId\": \"b07b80cb-bdf0-4fd2-98d9-6e5d677c9d64\",\n            \"fileName\": \"03_DrugTest.png\",\n            \"documentType\": \"DRUG_TEST\",\n            \"confidence\": \"HIGH\",\n            \"isExpired\": false,\n            \"flags\": [\n                {\n                    \"severity\": \"LOW\",\n                    \"message\": \"The results for Cocaine (COC), Phencyclidine (PCP), Barbiturates (BAR), MDMA (Ecstasy/Molly), and Tramadol (TRM) are indicated with a heart symbol in the 'Result' column and the text value is '<5 ng/mL'. This may be a visual indicator from the system, but the textual value confirms the negative result.\"\n                }\n            ]\n        }\n    ],\n    \"expiredDocuments\": [],\n    \"expiringDocuments\": [],\n    \"medicalAndComplianceConcerns\": [\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Blood pressure (135/88 mmHg) is noted as 'Elevated - Monitor' which, while not disqualifying, requires specific monitoring as per the restrictions.\",\n            \"severity\": \"WARNING\"\n        },\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Total Cholesterol is 'Borderline' at 198 mg/dL, though LDL and HDL are within acceptable ranges.\",\n            \"severity\": \"WARNING\"\n        },\n        {\n            \"documentType\": \"PEME\",\n            \"message\": \"Physician signature is missing from the document.\",\n            \"severity\": \"LOW\"\n        },\n        {\n            \"documentType\": \"COC\",\n            \"message\": \"The document header has a future date '2026-04-08' which seems like a placeholder or system date rather than the document issue date, but the 'Date of Issue' and 'Validity Period' fields are consistent and appear correct.\",\n            \"severity\": \"LOW\"\n        }\n    ],\n    \"consistencyIssues\": [\n        {\n            \"message\": \"Holder name 'RICARDO MARIANO SANTOS' in COC document does not match holder name 'SAMUEL PABLO SAMOYA' in PEME document and 'FRANCISCO JAVIER SALONGA' in DrugTest document.\",\n            \"severity\": \"REJECTED\"\n        },\n        {\n            \"message\": \"Date of birth '15/03/1985' in COC document does not match date of birth '12/03/1988' in PEME document and '28/08/1990' in DrugTest document.\",\n            \"severity\": \"REJECTED\"\n        }\n    ],\n    \"recommendations\": [\n        \"Please ensure all submitted documents belong to the same seafarer. Resubmit documents with consistent holder information for identity verification.\",\n        \"If the submitted PEME is indeed for RICARDO MARIANO SANTOS, please provide proof of the physician's signature.\",\n        \"If the submitted PEME is for RICARDO MARIANO SANTOS, please clarify the 'Elevated - Monitor' blood pressure and 'Borderline' cholesterol findings and ensure appropriate follow-up actions are documented.\"\n    ],\n    \"summary\": \"The identity of the seafarer is inconsistent across the provided documents. The COC belongs to RICARDO MARIANO SANTOS, while the PEME belongs to SAMUEL PABLO SAMOYA and the Drug Test belongs to FRANCISCO JAVIER SALONGA. Therefore, the documents cannot be considered for a single seafarer.\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Session management endpoints"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "backend_url",
+      "value": "http://localhost:3000/api",
+      "description": "Backend service base URL"
+    },
+    {
+      "key": "maritime_url",
+      "value": "http://localhost:3001/api",
+      "description": "Maritime Doc Extractor service base URL"
+    },
+    {
+      "key": "parser_url",
+      "value": "http://localhost:8000",
+      "description": "Parser microservice base URL"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "description": "JWT access token - obtained from login/signup"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "description": "JWT refresh token - obtained from login/signup"
+    },
+    {
+      "key": "analysis_id",
+      "value": "analysis_456",
+      "description": "Sample analysis ID for testing"
+    },
+    {
+      "key": "job_id",
+      "value": "job_456",
+      "description": "Sample job ID for testing"
+    },
+    {
+      "key": "session_id",
+      "value": "session_789",
+      "description": "Sample session ID for testing"
+    }
+  ]
+}

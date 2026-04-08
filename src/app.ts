@@ -22,6 +22,5 @@ export function createApp() {
     const appError = asAppError(error);
     sendError(res, appError);
   });
-
   return app;
 }

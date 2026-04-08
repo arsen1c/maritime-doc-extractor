@@ -15,6 +15,7 @@ const querySchema = z.object({
 export const extractRouter = Router();
 const extractionService = new ExtractionService();
 
+// TODO: move the controller into a seperate folder
 extractRouter.post("/", extractRateLimit, upload.single("document"), async (req, res, next) => {
   try {
     const query = querySchema.parse(req.query);
