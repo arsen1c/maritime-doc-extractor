@@ -1,5 +1,9 @@
 ## Code Review: `feat: add document extraction endpoint`
 
+**Note:** Refer the [CODE_REVIEW.ts file](CODE_REVIEW.ts) for the code form the assessment.
+
+---
+
 I would not approve this as-is. The endpoint  gets a basic happy path working, but there are several production-blocking issues here around security, cost, reliability, and data handling.
 
 The good part first: you pushed through the end-to-end flow and proved the basic idea. That matters. But for a backend handling sensitive maritime documents, we need a much tighter standard around credentials, failure handling, storage, and output validation.
